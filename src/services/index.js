@@ -1,5 +1,5 @@
-const resourceService = require('./resourceService');
+const authService = require('./authService');
 
 module.exports = {
-  resourceService,
+  authService,
 };

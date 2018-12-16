@@ -1,8 +1,9 @@
 const Router = require('express');
-const { setResourceRoutes } = require('./resourceRoutes');
+
+const { setAuthRoutes } = require('./auth');
 
 const routes = Router();
 
-setResourceRoutes(routes);
+setAuthRoutes(routes);
 
 module.exports = routes;

@@ -1,5 +1,5 @@
-const resourceController = require('./resourceController');
+const authController = require('./authController');
 
 module.exports = {
-  resourceController,
+  authController,
 };
