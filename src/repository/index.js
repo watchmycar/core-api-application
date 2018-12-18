@@ -1,5 +1,5 @@
-const resourceRepository = require('./resourceRepository');
+const usereRepository = require('./user');
 
 module.exports = {
-  resourceRepository,
+  usereRepository,
 };

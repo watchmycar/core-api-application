@@ -8,6 +8,4 @@ const setAuthRoutes = (routes) => {
   routes.get('/auth/token', getToken);
 };
 
-module.exports = {
-  setAuthRoutes,
-};
+module.exports = setAuthRoutes;

@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const { dbHost, dbPort, dbName } = require('../../config');
 
+//TODO: Password on connection
 const connect = () => {
   const connectionString = `mongodb://${dbHost}:${dbPort}/${dbName}`;
   const options = {
