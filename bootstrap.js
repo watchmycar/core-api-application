@@ -24,7 +24,7 @@ const runApplication = async () => {
     await startServer()
   } catch (error) {
     console.error('Fatal exception on startup!');
-    console.error(`${err}`);
+    console.error(`${error}`);
     process.exit(-1);
   }
 }
