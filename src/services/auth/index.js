@@ -1,9 +1,11 @@
-const token = require('../../libs/token');
-const idGenerator  = require('../../libs/idGenerator');
+const {
+  generateUuid,
+  generateToken,
+} = require('../../libs');
 
 const getToken = async () => {
-  const id = idGenerator.generate();
-  const jwtToken = await token.generateToken(id);  
+  const uiid = generateUuid();
+  const jwtToken = await generateToken(uiid);  
   const response = {
     jwtToken,
   };
