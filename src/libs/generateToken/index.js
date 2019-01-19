@@ -2,7 +2,7 @@ const { promisify } = require('util')
 const { sign } = require('jsonwebtoken');
 const signWithPromise = promisify(sign)
 
-const { jwtSecret, expiringTime } = require('../../config');
+const { jwtSecret, expiringTime } = require('../../../config');
 
 const generateToken = (content) => {
   const payload = {
@@ -16,6 +16,4 @@ const generateToken = (content) => {
   return signWithPromise(payload, jwtSecret, options);
 };
 
-module.exports = {
-  generateToken,
-};
+module.exports = generateToken;

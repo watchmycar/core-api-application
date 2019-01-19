@@ -1,5 +1,5 @@
 
-const handleError = (error) => {
+const handleErrors = (error) => {
   const INTERNAL_ERROR_CODE = 500;
   let errorBody;
   let statusCode;
@@ -24,6 +24,4 @@ const handleError = (error) => {
   return errorObject;
 };
 
-module.exports = {
-  handleError,
-};
+module.exports = handleErrors;
