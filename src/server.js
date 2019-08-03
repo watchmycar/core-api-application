@@ -4,7 +4,7 @@ const express = require('express');
 const bearerToken = require('express-bearer-token');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
-const { handleError } = require('./libs/error');
+const { handleErrors } = require('./libs');
 const { port } = require('../config');
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(bearerToken());
 app.use('/', routes);
 
 app.use((err, req, res, next) => {
-  const { statusCode, errorBody } = handleError(err);
+  const { statusCode, errorBody } = handleErrors(err);
   return res.status(statusCode).json(errorBody);
 })
 

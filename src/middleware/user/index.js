@@ -1,10 +1,10 @@
 const Joi = require('joi');
-const { resourceSchema } = require('../schemas');
+const { userSchema } = require('../../schemas');
 
-const validateResourcePayload = async (req, res, next) => {
-  const { body: resourcePayload } = req;
+const validateUserPayload = async (req, res, next) => {
+  const { body: userPayload } = req;
   try {
-    await Joi.validate(resourcePayload, resourceSchema);
+    await Joi.validate(userPayload, userSchema);
     return next();
   } catch (error) {
     const BAD_REQUEST_CODE = 400;
@@ -19,4 +19,4 @@ const validateResourcePayload = async (req, res, next) => {
   }
 };
 
-module.exports = validateResourcePayload;
+module.exports = validateUserPayload;

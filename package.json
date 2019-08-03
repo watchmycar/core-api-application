@@ -5,14 +5,15 @@
   "main": "bootstrap.js",
   "dependencies": {
     "@godaddy/terminus": "2.3.0",
-    "bcryptjs": "2.4.3",
+    "@phc/pbkdf2": "1.1.14",
     "bluebird": "3.5.1",
     "body-parser": "1.18.3",
+    "boom": "7.3.0",
     "express": "4.16.3",
     "express-bearer-token": "2.1.1",
     "joi": "13.4.0",
     "jsonwebtoken": "8.3.0",
-    "mongoose": "5.1.5",
+    "mongoose": "5.4.5",
     "ramda": "0.26.1",
     "uuid": "3.2.1"
   },

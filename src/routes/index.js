@@ -1,7 +1,7 @@
 const Router = require('express');
 
 const setAuthRoutes = require('./auth');
-const { setUserRoutes } = require('./user');
+const setUserRoutes = require('./user');
 
 const routes = Router();
 

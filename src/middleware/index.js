@@ -1,7 +1,7 @@
-const validateToken = require('./validateToken');
-const validateResourcePayload = require('./validateResourcePayload');
+const validateToken = require('./auth');
+const validateUserPayload = require('./user');
 
 module.exports = {
   validateToken,
-  validateResourcePayload,
+  validateUserPayload,
 };
