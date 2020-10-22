@@ -1,14 +1,21 @@
 
-const { badRequest } = require('boom');
+const { 
+  badRequest,
+  unauthorized,
+} = require('boom');
 const { merge } = require('ramda');
 
 const {
   generateUuid,
+  generateToken,
   security,
 } = require('../../libs');
 
 const { userRepository } = require('../../repository');
-const { encrypt } = security
+const {
+  compareHash, 
+  encrypt,
+} = security
 
 const saveUser = async (userData) => {
   const { password } = userData;
@@ -42,6 +49,40 @@ const saveUser = async (userData) => {
   }
 };
 
-module.exports = {
-  saveUser,
+const login = async ({ email, password })=> {
+  const userFilter = {
+    email,
+  };
+
+  const checkUserCredentials = async (user) => {
+    if (user) {
+      const validUser = await compareHash(user.password, password);
+      if (validUser) {
+        return Promise.resolve();
+      }
+
+      throw unauthorized('Invalid credentials');
+    }
+  
+    throw unauthorized('Invalid credentials');
+  };
+  
+  try {
+    const user = await userRepository.findOne(userFilter);
+    await checkUserCredentials(user, password);
+    const jwtToken = await generateToken(user._id);
+    const loginResponse = {
+      logged: true,
+      token: jwtToken,
+    };
+    return loginResponse;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
+
+module.exports = {
+  login,
+  saveUser,
+};
