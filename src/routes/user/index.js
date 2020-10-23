@@ -1,14 +1,14 @@
-const { userController } = require('../../controllers');
-const { validateUserPayload } = require('../../middleware');
+const { userController } = require('../../controllers')
+const { validateUserPayload } = require('../../middleware')
 
 const {
   login,
   saveUser,
-} = userController;
+} = userController
 
 const setUserRoutes = (routes) => {
-  routes.post('/user', validateUserPayload, saveUser);
-  routes.post('/user/login', validateUserPayload, login);
-};
+  routes.post('/user', validateUserPayload, saveUser)
+  routes.post('/user/login', validateUserPayload, login)
+}
 
-module.exports = setUserRoutes;
+module.exports = setUserRoutes

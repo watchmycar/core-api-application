@@ -1,23 +1,23 @@
 
-const mongoose = require('mongoose');
-const { dbHost, dbPort, dbName } = require('../../config');
+const Knex = require('knex')
+const config = require('../../config')
+const { Model } = require('objection')
 
-//TODO: Password on connection
-const connect = () => {
-  const connectionString = `mongodb://${dbHost}:${dbPort}/${dbName}`;
-  const options = {
-    poolSize: 5,
-    connectTimeoutMS: 30000,
-    keepAlive: 1000,
-    useNewUrlParser: true,
-  };
+const connect = async () => {
+  console.log(config.knex)
+  const knex = Knex(config.knex)
 
-  return mongoose.connect(connectionString, options);
-};
-
-const disconnect = () => mongoose.disconnect();
+   try {
+    await knex.raw('select 1+1 as result')
+  } catch (err) {
+    console.log('DB connection failed', err)
+    throw err
+  }
+  
+  Model.knex(knex)
+  return knex
+}
 
 module.exports = {
   connect,
-  disconnect,
-};
+}

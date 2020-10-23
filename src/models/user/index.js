@@ -1,48 +1,23 @@
-const mongoose = require('mongoose');
+const { Model } = require('objection')
 
-const { Schema } = mongoose;
-let userModel;
-
-const UserSchema = new Schema({
-  _id: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String
-  },
-  email: {
-    type: String,
-    sparse: true,
-    unique: true,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  terminalId: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  _created_at: {
-    type: Date,
-    default: Date.now,
-  },
-  _updated_at: {
-    type: Date,
-    default: Date.now,
-  },
-}, {
-  collection: 'User',
-  versionKey: false,
-});
-
-try {
-  userModel = mongoose.model('User', UserSchema);
-} catch (error) {
-  userModel = mongoose.model('User');
+class User extends Model {
+  static get tableName() {
+    return 'users'
+  }
+  
+  // schema validation
+  static get jsonSchema() {
+    return {
+      type: 'object',
+      required: ['email', 'terminalId'],
+      properties: {
+        id: { type: 'integer' },
+        email: { type: 'string'},
+        password: { type: 'string'},
+        terminalKey: { type: 'string'},
+      }
+    }
+  }
 }
 
-module.exports = userModel;
+module.exports = User

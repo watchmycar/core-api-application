@@ -1,3 +1,4 @@
+require('dotenv').config({ silent: false })
 const terminus = require('@godaddy/terminus');
 const { start: startServer, server} = require('./src/server');
 const database = require('./src/database');
@@ -6,7 +7,6 @@ const runApplication = async () => {
   const gracefullyShutdown = async () => {
     try {
       await server.stop()
-      await database.disconnect()
     } catch (error) {
       process.exit(1)
     }
