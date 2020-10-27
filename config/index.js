@@ -1,25 +1,9 @@
-const { knexSnakeCaseMappers } = require('objection')
+const knex = require('./knex')
 
 const postgres = {
   url: process.env.DATABASE_URL,
 }
 
-const knex = {
-  debug: false,
-  client: 'postgresql',
-  connection: postgres.url,
-  ...knexSnakeCaseMappers(),
-  seeds: {
-    directory: '../src/database/seed',
-  },
-  migrations: {
-    directory: '../src/database/migration',
-  },
-  // pool: {
-  //   min: 2,
-  //   max: 10,
-  // },
-}
 const config = {
   port: process.env.PORT,
   database: {
