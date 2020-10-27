@@ -4,8 +4,8 @@ exports.up = async (knex) => {
     'users',
     table => {
       table.increments('id').primary()
-      table.string('email', constraints.user.emailMaxLength).unique()
-      table.string('password', constraints.user.passwordMaxLength)
+      table.string('email').unique()
+      table.string('password')
       table.string('googleId').unique()
       table.dateTime('createdAt').notNullable().defaultTo(knex.fn.now())
       table.dateTime('updatedAt').notNullable().defaultTo(knex.fn.now())
