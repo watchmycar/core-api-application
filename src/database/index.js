@@ -4,8 +4,7 @@ const config = require('../../config')
 const { Model } = require('objection')
 
 const connect = async () => {
-  console.log(config.knex)
-  const knex = Knex(config.knex)
+   const knex = Knex(config.knex)
 
    try {
     await knex.raw('select 1+1 as result')
