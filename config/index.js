@@ -15,6 +15,6 @@ const config = {
   iterations: process.env.ITERATIONS,
   digest: process.env.DIGEST,
   knex,
-};
+}
 
-module.exports = config;
+module.exports = config

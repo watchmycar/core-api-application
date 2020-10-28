@@ -1,6 +1,6 @@
 require('dotenv').config({ silent: false })
 const { knexSnakeCaseMappers } = require('objection')
-console.log(process.env)
+
 const knex = {
   debug: false,
   client: 'postgresql',
@@ -12,10 +12,10 @@ const knex = {
   migrations: {
     directory: '../src/database/migration',
   },
-  // pool: {
-  //   min: 2,
-  //   max: 10,
-  // },
+  pool: {
+    min: 2,
+    max: 10,
+  },
 }
-console.log(knex)
+
 module.exports = knex

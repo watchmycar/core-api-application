@@ -15,7 +15,6 @@ infra:
 infra-stop:
 	docker-compose down
 
-
 migrate:
 	DATABASE_URL=postgres://postgres:postgres@localhost:5432/wmc-database $(BIN)/knex migrate:latest --knexfile=$(KNEXFILE)
 
@@ -24,7 +23,6 @@ seed:
 
 rollback:
 	$(BIN)/knex migrate:rollback --knexfile=$(KNEXFILE)
-
 
 .PHONY: install
 	run
