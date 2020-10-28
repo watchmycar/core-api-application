@@ -3,15 +3,25 @@ const http = require('http')
 const express = require('express')
 const bearerToken = require('express-bearer-token')
 const bodyParser = require('body-parser')
+const helmet = require('helmet')
+const rateLimit = require('express-rate-limit')
 const routes = require('./routes')
 const { handleErrors } = require('./libs')
 const { port } = require('../config')
 
 const app = express()
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+})
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.set('trust proxy', 1)
+app.use(limiter)
 app.use(bearerToken())
+app.use(helmet())
 
 app.use('/', routes)
 
