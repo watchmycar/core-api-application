@@ -18,11 +18,11 @@ infra-stop:
 migrate:
 	DATABASE_URL=postgres://postgres:postgres@localhost:5432/wmc-database $(BIN)/knex migrate:latest --knexfile=$(KNEXFILE)
 
+rollback:
+	DATABASE_URL=postgres://postgres:postgres@localhost:5432/wmc-database $(BIN)/knex migrate:rollback --knexfile=$(KNEXFILE)
+
 seed:
 	$(BIN)/knex seed:run --knexfile=$(KNEXFILE)
-
-rollback:
-	$(BIN)/knex migrate:rollback --knexfile=$(KNEXFILE)
 
 .PHONY: install
 	run
