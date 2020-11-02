@@ -75,7 +75,6 @@ const login = async ({ email, password })=> {
     }
     return loginResponse
   } catch (error) {
-    console.error(error)
     throw error
   }
 }
