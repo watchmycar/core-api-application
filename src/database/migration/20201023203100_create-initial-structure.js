@@ -7,6 +7,7 @@ exports.up = async (knex) => {
       table.string('email').unique()
       table.string('password')
       table.string('googleId').unique()
+      table.string('terminalId').unique()
       table.dateTime('createdAt').notNullable().defaultTo(knex.fn.now())
       table.dateTime('updatedAt').notNullable().defaultTo(knex.fn.now())
       table.dateTime('deletedAt').index()

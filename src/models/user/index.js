@@ -15,6 +15,8 @@ class User extends Model {
         email: { type: 'string'},
         password: { type: 'string'},
         terminalKey: { type: 'string'},
+        googleId: { type: 'string'},
+        terminalId: { type: 'string'},
       }
     }
   }
