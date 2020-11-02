@@ -23,18 +23,16 @@ const saveUser = async (userData) => {
   try {
     const encryptedPassword = await encrypt(password)
     const mergeableUserData = { 
-      _id: generateUuid(),
       terminalId: `terminal-${generateUuid()}`,
       password: encryptedPassword,
     }
 
     const userPayload = merge(userData, mergeableUserData)
     const savedUser = await userRepository.save(userPayload)
-    const userResponse = {
-      id: savedUser._id,
+     const userResponse = {
+      id: savedUser.id,
       email: savedUser.email,
       terminalId: savedUser.terminalId,
-      createdAt: savedUser._created_at,
     }
 
     return userResponse
