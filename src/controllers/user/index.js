@@ -29,4 +29,5 @@ const socialLogin = async (req, res, next) => {}
 module.exports = {
   login,
   saveUser,
+  socialLogin,
 }
