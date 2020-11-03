@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const { userSchema } = require('../../schemas')
+const { userSchema } = require('@schemas')
 
 const validateUserPayload = async (req, res, next) => {
   const { body: userPayload } = req

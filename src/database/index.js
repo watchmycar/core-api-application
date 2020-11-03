@@ -1,7 +1,7 @@
 
 const Knex = require('knex')
-const config = require('../../config')
 const { Model } = require('objection')
+const config = require('@config')
 
 const connect = async () => {
    const knex = Knex(config.knex)

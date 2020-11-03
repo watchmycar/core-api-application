@@ -1,4 +1,4 @@
-const { userService } = require('../../services')
+const { userService } = require('@services')
 
 const CREATED_STATUS = 201
 const OK_STATUS = 200

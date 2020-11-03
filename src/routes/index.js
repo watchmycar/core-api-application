@@ -1,6 +1,6 @@
 const Router = require('express')
 
-const setUserRoutes = require('./user')
+const setUserRoutes = require('@routes/user')
 
 const routes = Router()
 

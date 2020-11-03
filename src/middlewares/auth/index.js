@@ -2,7 +2,7 @@ const { promisify } = require('util')
 const jsonwebtoken = require('jsonwebtoken')
 const verifyWithPromise = promisify(jsonwebtoken.verify)
 
-const { jwtSecret } = require('../../../config')
+const { jwtSecret } = require('@config')
 
 const validateToken = async (req, res, next) => {
   try {

@@ -1,7 +1,7 @@
-const generateToken = require('./generateToken')
-const generateUuid = require('./generateUuid')
-const handleErrors = require('./handleErrors')
-const security = require('./security')
+const generateToken = require('@libs/generateToken')
+const generateUuid = require('@libs/generateUuid')
+const handleErrors = require('@libs/handleErrors')
+const security = require('@libs/security')
 
 module.exports = {
   generateToken,

@@ -9,9 +9,9 @@ const {
   generateUuid,
   generateToken,
   security,
-} = require('../../libs')
+} = require('@libs')
 
-const { userRepository } = require('../../repository')
+const { userRepository } = require('@repositories')
 const {
   compareHash, 
   encrypt,

@@ -3,7 +3,7 @@ const {
   digest,
   iterations,
   saltRounds,
-} = require('../../../config')
+} = require('@config')
 
 const hashOptions = {
   digest,

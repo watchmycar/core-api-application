@@ -1,7 +1,8 @@
 require('dotenv').config({ silent: false })
+require('module-alias/register')
 const terminus = require('@godaddy/terminus')
-const { start: startServer, server} = require('./src/server')
-const database = require('./src/database')
+const { start: startServer, server} = require('@src/server')
+const database = require('@database')
 
 const runApplication = async () => {
   const gracefullyShutdown = async () => {

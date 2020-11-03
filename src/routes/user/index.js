@@ -1,5 +1,5 @@
-const { userController } = require('../../controllers')
-const { validateUserPayload } = require('../../middleware')
+const { userController } = require('@controllers')
+const { validateUserPayload } = require('@middlewares')
 
 const {
   login,

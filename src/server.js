@@ -5,9 +5,9 @@ const bearerToken = require('express-bearer-token')
 const bodyParser = require('body-parser')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
-const routes = require('./routes')
-const { handleErrors } = require('./libs')
-const { port } = require('../config')
+const routes = require('@routes')
+const { handleErrors } = require('@libs')
+const { port } = require('@config')
 
 const app = express()
 
