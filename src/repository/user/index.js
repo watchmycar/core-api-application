@@ -1,6 +1,11 @@
 
-const CommonRepository = require('../common');
-const { userModel } = require('../../models');
-const userRepository = new CommonRepository(userModel);
+const CommonRepository = require('../common')
+const { User } = require('../../models')
 
-module.exports = userRepository;
+class UserRepository extends CommonRepository {
+  constructor() {
+    super(User)
+  }
+}
+
+module.exports = new UserRepository()

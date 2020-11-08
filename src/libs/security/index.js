@@ -1,9 +1,9 @@
-const pbkdf2 = require('@phc/pbkdf2');
+const pbkdf2 = require('@phc/pbkdf2')
 const {
   digest,
   iterations,
   saltRounds,
-} = require('../../../config');
+} = require('../../../config')
 
 const hashOptions = {
   digest,
@@ -11,11 +11,11 @@ const hashOptions = {
   saltSize: Number(saltRounds),
 }
 
-const encrypt = plainText => pbkdf2.hash(plainText, hashOptions);
+const encrypt = plainText => pbkdf2.hash(plainText, hashOptions)
 
-const compareHash = (hash, plainText) => pbkdf2.verify(hash, plainText);
+const compareHash = (hash, plainText) => pbkdf2.verify(hash, plainText)
 
 module.exports = {
   encrypt,
   compareHash,
-};
+}

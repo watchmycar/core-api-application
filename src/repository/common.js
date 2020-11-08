@@ -1,17 +1,16 @@
 
 class CommonRepository {
   constructor(model) {
-    this.Model = model;
+    this.Model = model
   }
 
   save(payload) {
-    const model = new this.Model(payload);
-    return model.save();
+    return this.Model.query().insert(payload)
   }
 
   findOne(filter) {
-    return this.Model.findOne(filter);
+    return this.Model.query().findOne(filter)
   }
 }
 
-module.exports = CommonRepository;
+module.exports = CommonRepository
