@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "sourceMap": true, 
+    "strictPropertyInitialization": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+
+    "noImplicitAny": false,
+    
+    "outDir": "./dist",
+    
+    "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    
+    "moduleResolution": "node", //ok
+
+    "baseUrl": ".", //ok
+    "paths": {
+      "@src/*": ["src/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@database/*": ["src/database/*"],
+      "@libs/*": ["src/libs/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@models/*": ["src/models/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@routes/*": ["src/routes/*"],
+      "@schemas/*": ["src/schemas/*"],
+      "@services/*": ["src/services/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@config/*": ["src/config/*"]
+    },
+    "typeRoots": ["@types",  "node_modules/@types" ]
+  },
+  "include": [
+      "src",
+      "@types"
+  ]
+}
