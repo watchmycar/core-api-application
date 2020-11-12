@@ -1,5 +1,7 @@
 
-class CommonRepository {
+export class CommonRepository {
+  Model
+
   constructor(model) {
     this.Model = model
   }
@@ -12,5 +14,3 @@ class CommonRepository {
     return this.Model.query().findOne(filter)
   }
 }
-
-module.exports = CommonRepository

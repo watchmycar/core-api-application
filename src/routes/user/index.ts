@@ -1,6 +1,5 @@
-const { userController } = require('@controllers')
-const { validateUserPayload } = require('@middlewares')
-
+import { userController } from '@controllers/index'
+import { validateUserPayload } from '@middlewares/index'
 const {
   login,
   saveUser,
@@ -11,4 +10,6 @@ const setUserRoutes = (routes) => {
   routes.post('/user/login', validateUserPayload, login)
 }
 
-module.exports = setUserRoutes
+export {
+  setUserRoutes,
+}

@@ -1,23 +1,13 @@
 
-const { 
-  badRequest,
-  unauthorized,
-} = require('boom')
-const { merge } = require('ramda')
+import { badRequest, unauthorized } from 'boom'
+import { merge } from 'ramda'
+import { generateToken, generateUuid, security } from '@libs/index'
+import { userRepository } from '@repositories/index'
+import { IUser, ISaveUserResponse } from '@interfaces/user'
 
-const {
-  generateUuid,
-  generateToken,
-  security,
-} = require('@libs')
+const { compareHash, encrypt, } = security
 
-const { userRepository } = require('@repositories')
-const {
-  compareHash, 
-  encrypt,
-} = security
-
-const saveUser = async (userData) => {
+export const saveUser = async (userData: IUser): Promise<ISaveUserResponse> => {
   const { password } = userData
 
   try {
@@ -47,12 +37,12 @@ const saveUser = async (userData) => {
   }
 }
 
-const login = async ({ email, password })=> {
+export const login = async ({ email, password }: IUser)=> {
   const userFilter = {
     email,
   }
 
-  const checkUserCredentials = async (user) => {
+  const checkUserCredentials = async (user: any, password: string) => {
     if (user) {
       const validUser = await compareHash(user.password, password)
       if (validUser) {
@@ -80,10 +70,4 @@ const login = async ({ email, password })=> {
 }
 
 // implement social login
-const socialLogin = async() => {}
-
-module.exports = {
-  login,
-  saveUser,
-  socialLogin,
-}
+export const socialLogin = async() => {}

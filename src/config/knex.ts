@@ -1,7 +1,7 @@
 require('dotenv').config({ silent: false })
-const { knexSnakeCaseMappers } = require('objection')
+import { knexSnakeCaseMappers } from 'objection'
 
-const knex = {
+export const knex = {
   debug: false,
   client: 'postgresql',
   connection: process.env.DATABASE_URL,
@@ -17,5 +17,3 @@ const knex = {
     max: 10,
   },
 }
-
-module.exports = knex

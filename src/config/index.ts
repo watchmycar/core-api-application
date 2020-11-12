@@ -4,7 +4,7 @@ const postgres = {
   url: process.env.DATABASE_URL,
 }
 
-const config = {
+export const config = {
   port: process.env.PORT,
   database: {
     postgres,
@@ -16,5 +16,3 @@ const config = {
   digest: process.env.DIGEST,
   knex,
 }
-
-module.exports = config

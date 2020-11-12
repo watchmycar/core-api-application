@@ -1,9 +1,9 @@
-const { userService } = require('@services')
+import { userService } from '@services/index'
 
 const CREATED_STATUS = 201
 const OK_STATUS = 200
 
-const saveUser = async (req, res, next) => {
+export const saveUser = async (req, res, next) => {
   try {
     const userData = req.body
     const result = await userService.saveUser(userData)
@@ -13,7 +13,7 @@ const saveUser = async (req, res, next) => {
   }
 }
 
-const login = async (req, res, next) => {
+export const login = async (req, res, next) => {
   try {
     const userData = req.body
     const result = await userService.login(userData)
@@ -24,10 +24,5 @@ const login = async (req, res, next) => {
 }
 
 // implement social login
-const socialLogin = async (req, res, next) => {}
+export const socialLogin = async (req, res, next) => {}
 
-module.exports = {
-  login,
-  saveUser,
-  socialLogin,
-}

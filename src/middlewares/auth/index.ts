@@ -1,10 +1,11 @@
-const { promisify } = require('util')
-const jsonwebtoken = require('jsonwebtoken')
+import { promisify } from 'util'
+import * as jsonwebtoken from 'jsonwebtoken'
 const verifyWithPromise = promisify(jsonwebtoken.verify)
+import { config } from '@src/config/index'
 
-const { jwtSecret } = require('@config')
+const { jwtSecret } = config
 
-const validateToken = async (req, res, next) => {
+export const validateToken = async (req, res, next) => {
   try {
     const decodedToken = await verifyWithPromise(req.token, jwtSecret)
     req.userIdentifier = decodedToken.data
@@ -32,5 +33,3 @@ const validateToken = async (req, res, next) => {
     return res.status(NOT_AUTHORIZED_CODE).json(errorPayload)
   }
 }
-
-module.exports = validateToken

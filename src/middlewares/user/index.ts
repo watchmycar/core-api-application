@@ -1,7 +1,7 @@
-const Joi = require('joi')
-const { userSchema } = require('@schemas')
+import * as Joi from 'joi'
+import { userSchema } from '@schemas/index'
 
-const validateUserPayload = async (req, res, next) => {
+export const validateUserPayload = async (req, res, next) => {
   const { body: userPayload } = req
   try {
     await Joi.validate(userPayload, userSchema)
@@ -18,5 +18,3 @@ const validateUserPayload = async (req, res, next) => {
     return res.status(BAD_REQUEST_CODE).json(errorPayload)
   }
 }
-
-module.exports = validateUserPayload

@@ -1,14 +1,16 @@
 require('dotenv').config({ silent: false })
 require('module-alias/register')
-const terminus = require('@godaddy/terminus')
-const { start: startServer, server} = require('@src/server')
-const database = require('@database')
+import * as tsPathRegister from './ts-path-register'
+tsPathRegister.registerTsFiles()
+import * as terminus from '@godaddy/terminus'
+import { start as startServer, server} from '@src/server'
+import * as database from '@database/index'
 
 const runApplication = async () => {
   const gracefullyShutdown = async () => {
     try {
       console.log('finishing application..')
-      await server.stop()
+      await server.close()
       console.log('application finished')
     } catch (error) {
       process.exit(1)
