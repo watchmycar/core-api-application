@@ -15,7 +15,11 @@ pids
 lib-cov
 
 
+# db volume
 .db/data
+
+# compiled js
+/dist
 
 # Coverage directory used by tools like istanbul
 coverage

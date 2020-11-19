@@ -3,10 +3,13 @@
 KNEXFILE :=  config/knex.js
 BIN := node_modules/.bin
 
+compile:
+	tsc
+
 install:
 	npm install
 
-run:
+run: compile
 	npm start
 
 infra:
@@ -31,3 +34,4 @@ seed:
 	migrate
 	seed
 	rollback
+	compile
