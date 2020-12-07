@@ -1,6 +1,7 @@
 export interface IUser {
-  email: string
-  password: string
+  email?: string
+  password?: string
+  googleToken?: string
 }
 
 export interface ISaveUserResponse {

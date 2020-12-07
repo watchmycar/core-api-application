@@ -15,4 +15,7 @@ export const config = {
   iterations: process.env.ITERATIONS,
   digest: process.env.DIGEST,
   knex,
+  oauth: {
+    clientId: process.env.OAUTH_CLIENT_ID,
+  },
 }
