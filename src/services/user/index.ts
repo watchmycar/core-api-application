@@ -1,11 +1,13 @@
 
+import * as _ from 'lodash'
 import { badRequest, unauthorized } from 'boom'
 import { merge } from 'ramda'
-import { generateToken, generateUuid, security } from '@libs/index'
+import { generateToken, generateUuid, security, auth } from '@libs/index'
 import { userRepository } from '@repositories/index'
 import { IUser, ISaveUserResponse } from '@interfaces/user'
 
 const { compareHash, encrypt, } = security
+const { authWithGoogle } = auth
 
 export const saveUser = async (userData: IUser): Promise<ISaveUserResponse> => {
   const { password } = userData
@@ -37,37 +39,51 @@ export const saveUser = async (userData: IUser): Promise<ISaveUserResponse> => {
   }
 }
 
-export const login = async ({ email, password }: IUser)=> {
-  const userFilter = {
-    email,
-  }
-
-  const checkUserCredentials = async (user: any, password: string) => {
-    if (user) {
-      const validUser = await compareHash(user.password, password)
-      if (validUser) {
-        return Promise.resolve()
-      }
-
-      throw unauthorized('Invalid credentials')
-    }
-  
+const defaultAuth = async (userPassword: string, password: string = '') => {
+  const validUser = await compareHash(userPassword, password)
+  if (!validUser) {
     throw unauthorized('Invalid credentials')
   }
-  
-  try {
-    const user = await userRepository.findOne(userFilter)
-    await checkUserCredentials(user, password)
-    const jwtToken = await generateToken(user._id)
-    const loginResponse = {
-      logged: true,
-      token: jwtToken,
-    }
-    return loginResponse
-  } catch (error) {
-    throw error
-  }
+  return validUser
 }
 
-// implement social login
-export const socialLogin = async() => {}
+export const authUser = async (payload: IUser)=> {
+  const { email, password, googleToken } = payload
+  let googleUser
+  let user
+  if(!googleToken && (!password || !email)) {
+    throw unauthorized('Provide either email/password or a google token')
+  }
+
+  if (googleToken) {
+    googleUser = await authWithGoogle(googleToken)
+  }
+
+  const userFilter = {
+    email: email || googleUser.email,
+  }
+
+  user = await userRepository.findOne(userFilter)
+
+  // create passwordless user
+  if (!user && _.get(googleUser, 'email')) {
+    const userData = { 
+      terminalId: `terminal-${generateUuid()}`,
+      email: googleUser.email,
+      googleId: googleUser.googleId,
+    }
+
+    user = await userRepository.save(userData)
+  }
+
+  if (email && password) {
+    await defaultAuth(_.get(user, 'password'),  password)
+  }
+
+  const jwtToken = await generateToken(user.id)
+  const loginResponse = {
+    logged: true,
+    token: jwtToken,
+  }
+  return loginResponse
+}

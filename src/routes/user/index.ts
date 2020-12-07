@@ -1,13 +1,14 @@
 import { userController } from '@controllers/index'
 import { validateUserPayload } from '@middlewares/index'
+
 const {
-  login,
+  auth,
   saveUser,
 } = userController
 
 const setUserRoutes = (routes) => {
   routes.post('/user', validateUserPayload, saveUser)
-  routes.post('/user/login', validateUserPayload, login)
+  routes.post('/user/auth', validateUserPayload, auth)
 }
 
 export {
