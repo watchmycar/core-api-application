@@ -1,24 +1,18 @@
 version: '2.1'
 
 services:
-  mongo:
-    image: mongo
-    ports:
-      - "27018:27017"
-
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    working_dir: /app
-    volumes:
-      - ./:/app
-      - /app/node_modules
-    depends_on:
-      - mongo
-    env_file: .env
+  database:
+    image: postgres:12.3-alpine
+    container_name: wmc-database
     environment:
-      - NODE_ENV=development
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=wmc-database
     ports:
-      - 8000:8000
-    command: npm start
+      - 5432:5432
+    volumes:
+      - ./.db/data:/var/lib/postgresql/data:delegated
+      - ./.db/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: pg_isready -U postgres -h 127.0.0.1
+      interval: 5s
